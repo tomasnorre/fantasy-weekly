@@ -41,6 +41,7 @@ class Leaderboard extends Controller
                 'position' => $player->MissedCut ? 'MC' : $player->PositionDesc,
                 'name' => $player->LastName . ', ' . $player->FirstName,
                 'score' => $player->ScoreToPar,
+                'scoreColor' => $this->getScoreColor($player->ScoreToPar),
             ];
 
             if (in_array($player->PlayerId, $tomas)) {
@@ -61,5 +62,18 @@ class Leaderboard extends Controller
         }
 
         return $players;
+    }
+
+    private function getScoreColor(int $score): string
+    {
+        if ($score < 0 ) {
+           return 'red';
+        }
+
+        if ($score > 0) {
+            return 'black';
+        }
+
+        return 'grey';
     }
 }

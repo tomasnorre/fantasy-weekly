@@ -20,7 +20,24 @@
 
         table tr {
             height: 30px;
+        }
 
+        td.score {
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        td.red {
+            background-color: mediumvioletred;
+        }
+
+        td.grey {
+            background-color: dimgrey;
+        }
+
+        td.black {
+            background-color: black;
         }
 
         .h {
@@ -46,6 +63,9 @@
             border-radius: 40%;
             font-size: 12px;
         }
+        td.teams {
+            padding-left: 10px;
+        }
 
         span {
             margin-right: 5px;
@@ -66,7 +86,7 @@
             <td width='50px'>#</td>
             <td width='170px'>Player</td>
             <td>Score</td>
-            <td>Teams</td>
+            <td class='teams'>Teams</td>
         </tr>
         </thead>
         <tbody>
@@ -75,7 +95,7 @@
             echo "<tr>
                 <td>" . $player['position'] . "</td>
                 <td>" . $player['name'] . "</td>
-                <td>" . $player['score'] . "</td><td>";
+                <td class='score ". $player['scoreColor'] ."'>" . $player['score'] . "</td><td class='teams'>";
             foreach($player['teams'] as $team) {
                 echo "<span class='i-circle " . $team . "'>" . $team . "</span>";
             }
