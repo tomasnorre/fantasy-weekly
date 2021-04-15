@@ -71,6 +71,10 @@
             margin-right: 2px;
         }
 
+        span.firstname {
+            font-size: 12px;
+        }
+
         body {
             font-family: 'Nunito', sans-serif;
         }
@@ -91,7 +95,7 @@
         @foreach ($players as $player)
             <tr>
                 <td>{{ $player['position'] }}</td>
-                <td>{{ $player['name'] }}</td>
+                <td>{{ $player['lastname'] }}, <span class="firstname">{{ $player['firstname'] }}</span></td>
                 <td class="score {{ $player['scoreColor'] }}">{{ $player['score'] }}</td>
                 <td class="teams">
                     @foreach ( $player['teams'] as $team)
