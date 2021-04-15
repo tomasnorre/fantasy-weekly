@@ -29,7 +29,7 @@
         }
 
         td.red {
-            background-color: mediumvioletred;
+            background-color: darkred;
         }
 
         td.grey {
