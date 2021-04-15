@@ -38,7 +38,7 @@ class Leaderboard extends Controller
             }
 
             $players[$player->PlayerId] = [
-                'position' => $player->PositionDesc,
+                'position' => $player->MissedCut ? 'MC' : $player->PositionDesc,
                 'name' => $player->LastName . ', ' . $player->FirstName,
                 'score' => $player->ScoreToPar,
             ];
@@ -58,7 +58,6 @@ class Leaderboard extends Controller
             if (in_array($player->PlayerId, $hav)) {
                 $players[$player->PlayerId]['teams'][] = 'h';
             }
-
         }
 
         return $players;
