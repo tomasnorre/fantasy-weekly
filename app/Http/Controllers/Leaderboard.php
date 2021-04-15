@@ -40,7 +40,7 @@ class Leaderboard extends Controller
             $players[$player->PlayerId] = [
                 'position' => $player->MissedCut ? 'MC' : $player->PositionDesc,
                 'name' => $player->LastName . ', ' . $player->FirstName,
-                'score' => $player->ScoreToPar,
+                'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
                 'scoreColor' => $this->getScoreColor($player->ScoreToPar),
             ];
 
