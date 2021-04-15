@@ -70,9 +70,7 @@
         span {
             margin-right: 5px;
         }
-    </style>
 
-    <style>
         body {
             font-family: 'Nunito', sans-serif;
         }
@@ -90,19 +88,18 @@
         </tr>
         </thead>
         <tbody>
-        <?php
-        foreach ($players as $player) {
-            echo "<tr>
-                <td>" . $player['position'] . "</td>
-                <td>" . $player['name'] . "</td>
-                <td class='score ". $player['scoreColor'] ."'>" . $player['score'] . "</td><td class='teams'>";
-            foreach($player['teams'] as $team) {
-                echo "<span class='i-circle " . $team . "'>" . $team . "</span>";
-            }
-            echo "</td>
-            </tr>";
-        }
-        ?>
+        @foreach ($players as $player)
+            <tr>
+                <td>{{ $player['position'] }}</td>
+                <td>{{ $player['name'] }}</td>
+                <td class="score {{ $player['scoreColor'] }}">{{ $player['score'] }}</td>
+                <td class="teams">
+                    @foreach ( $player['teams'] as $team)
+                        <span class="i-circle {{ $team }}">{{ $team }}</span>
+                    @endforeach
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
