@@ -42,7 +42,7 @@ class Leaderboard extends Controller
                 'lastname' => $player->LastName,
                 'firstname' => $player->FirstName,
                 'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
-                'scoreColor' => $this->getScoreColor($player->ScoreToPar),
+                'scoreColor' => $player->ScoreToPar === null ? '-' : $this->getScoreColor($player->ScoreToPar),
             ];
 
             if (in_array($player->PlayerId, $tomas)) {
