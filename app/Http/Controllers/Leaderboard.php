@@ -43,6 +43,7 @@ class Leaderboard extends Controller
                 'firstname' => $player->FirstName,
                 'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
                 'scoreColor' => $player->ScoreToPar === null ? '-' : $this->getScoreColor($player->ScoreToPar),
+                'moved' => $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved),
             ];
 
             if (in_array($player->PlayerId, $tomas)) {
@@ -76,5 +77,27 @@ class Leaderboard extends Controller
         }
 
         return 'grey';
+    }
+
+    private function getMoved(int $moved): array
+    {
+        $color = 'grey';
+        $direction = '';
+
+        if ($moved < 0 ) {
+            $color = 'red';
+            $direction = 'down';
+        }
+
+        if ($moved > 0) {
+            $color = 'green';
+            $direction = 'up';
+        }
+
+        return [
+            'color' => $color,
+            'moved' => abs($moved),
+            'direction' => $direction,
+        ];
     }
 }

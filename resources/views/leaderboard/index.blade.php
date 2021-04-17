@@ -15,7 +15,7 @@
     </style>
     <style>
         table {
-            padding: 10px;
+            padding: 5px;
         }
 
         table tr {
@@ -75,6 +75,18 @@
             font-size: 12px;
         }
 
+        span.moved {
+            font-size: 10px;
+        }
+
+        span.moved.red {
+            color: red;
+        }
+
+        span.moved.green {
+            color: green;
+        }
+
         body {
             font-family: 'Nunito', sans-serif;
         }
@@ -82,11 +94,12 @@
 </head>
 <body class="antialiased">
 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-    <table>
+    <table cellspacing="1" cellpadding="1">
         <thead>
         <tr>
-            <td width='50px'>#</td>
-            <td width='170px'>Player</td>
+            <td width='35px'>#</td>
+            <td></td>
+            <td width='160px'>Player</td>
             <td>Score</td>
             <td class='teams'>Teams</td>
         </tr>
@@ -95,6 +108,14 @@
         @foreach ($players as $player)
             <tr>
                 <td>{{ $player['position'] }}</td>
+                <td>
+                    @if($player['moved']['direction']=='down')
+                        <span class="moved {{ $player['moved']['color'] }}">&#9660;</span><span class="moved"> {{ $player['moved']['moved'] }}</span>
+                    @endif
+                    @if($player['moved']['direction']=='up')
+                        <span class="moved {{ $player['moved']['color'] }}">&#9650;</span><span class="moved"> {{ $player['moved']['moved'] }}</span>
+                    @endif
+                </td>
                 <td>{{ $player['lastname'] }}, <span class="firstname">{{ $player['firstname'] }}</span></td>
                 <td class="score {{ $player['scoreColor'] }}">{{ $player['score'] }}</td>
                 <td class="teams">
