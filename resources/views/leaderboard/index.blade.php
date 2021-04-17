@@ -93,6 +93,7 @@
 
         body {
             font-family: 'Nunito', sans-serif;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -101,10 +102,10 @@
     <table cellspacing="1" cellpadding="1">
         <thead>
         <tr>
-            <td width='35px'>#</td>
+            <td width='30px'>#</td>
             <td></td>
-            <td width='160px'>Player</td>
-            <td>Today</td>
+            <td width='150px'>Player</td>
+            <td width="50px">Today</td>
             <td>Score</td>
             <td class='teams'>Teams</td>
         </tr>
