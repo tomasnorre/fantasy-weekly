@@ -125,7 +125,7 @@
                     @endif
                 </td>
                 <td>{{ $player['lastname'] }}, <span class="firstname">{{ $player['firstname'] }}</span></td>
-                <td class="today">{{ $player['today'] }}</td>
+                <td class="today">{{ $player['today'] }} {{ $player['played'] }}</td>
                 <td class="score {{ $player['scoreColor'] }}">{{ $player['score'] }}</td>
                 <td class="teams">
                     @foreach ( $player['teams'] as $team)
