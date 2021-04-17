@@ -23,8 +23,7 @@
                             #
                         </th>
                         <th scope="col"
-                            class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-
+                            class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         </th>
                         <th scope="col"
                             class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -34,10 +33,12 @@
                             class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Today
                         </th>
-                        <th scope="col" class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Score
                         </th>
-                        <th scope="col" class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Teams
                         </th>
                     </tr>
@@ -48,7 +49,7 @@
                             <td class="px-2 py-2 whitespace-nowrap">
                                 {{ $player['position'] }}
                             </td>
-                            <td class="px-2 py-2 whitespace-nowrap">
+                            <td class="whitespace-nowrap">
                                 @if($player['moved']['direction']=='down')
                                     <span class="moved red">&#9660;</span><span
                                         class="moved">{{ $player['moved']['moved'] }}</span>
@@ -71,8 +72,9 @@
                             <td class="px-2 py-2 whitespace-nowrap text-center text-sm font-medium teams">
                                 <div class="flex -space-x-1 overflow-hidden">
                                     @foreach ( $player['teams'] as $team)
-                                       <img
-                                            class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="{{ asset("images/$team.png") }}"
+                                        <img
+                                            class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                                            src="{{ asset("images/$team.png") }}"
                                             alt="">
                                     @endforeach
                                 </div>
