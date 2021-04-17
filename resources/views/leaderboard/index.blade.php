@@ -69,6 +69,8 @@
 
         td.today {
             font-size: 12px;
+            text-align: center;
+            width: 50px;
         }
 
         span {
@@ -103,9 +105,9 @@
         <thead>
         <tr>
             <td width='30px'>#</td>
-            <td></td>
+            <td width="30px"></td>
             <td width='150px'>Player</td>
-            <td width="50px">Today</td>
+            <td class="today">Today</td>
             <td>Score</td>
             <td class='teams'>Teams</td>
         </tr>
