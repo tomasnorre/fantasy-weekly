@@ -34,10 +34,10 @@
                             class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Today
                         </th>
-                        <th scope="col" class="score relative px-2 py-2">
+                        <th scope="col" class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Score
                         </th>
-                        <th scope="col" class="relative px-2 py-2">
+                        <th scope="col" class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Teams
                         </th>
                     </tr>
@@ -79,7 +79,6 @@
                             </td>
                         </tr>
                     @endforeach
-                    <!-- More people... -->
                     </tbody>
                 </table>
             </div>
