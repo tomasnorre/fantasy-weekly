@@ -42,7 +42,7 @@ class Leaderboard extends Controller
                 'lastname' => $player->LastName,
                 'firstname' => $player->FirstName,
                 'today' => $player->RoundScoreToPar === null ? $player->TeeTime : $this->getScore($player->RoundScoreToPar),
-                'played' => $player->HolesPlayed === null ? '' : '(' . $player->HolesPlayed . ')',
+                'played' => $player->HolesPlayed === null ? '' : '(' . $player->HolesPlayedDesc . ')',
                 'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
                 'scoreColor' => $player->ScoreToPar === null ? '-' : $this->getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved),
