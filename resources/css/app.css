@@ -1,0 +1,89 @@
+@tailwind components;
+@tailwind base;
+@tailwind utilities;
+
+
+table {
+    padding: 5px;
+}
+
+table tr {
+    height: 30px;
+}
+
+td.score {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    width: 20px;
+}
+
+td.red {
+    background-color: darkred;
+}
+
+td.grey {
+    background-color: dimgrey;
+}
+
+td.black {
+    background-color: black;
+}
+
+.h {
+    background: #0c5460;
+}
+
+.k {
+    background: yellowgreen;
+}
+
+.m {
+    background: dimgrey;
+}
+
+.t {
+    background: #af0a45;
+}
+
+.i-circle {
+    font-weight: bold;
+    color: #fff;
+    padding: 3px 4px;
+    border-radius: 40%;
+    font-size: 12px;
+}
+td.teams {
+    padding-left: 4px;
+}
+
+td.today {
+    font-size: 10px;
+    text-align: center;
+    width: 55px;
+}
+
+span {
+    margin-right: 2px;
+}
+
+span.firstname {
+    font-size: 12px;
+}
+
+span.moved {
+    font-size: 10px;
+}
+
+span.moved.red {
+    color: red;
+}
+
+span.moved.green {
+    color: green;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+}
