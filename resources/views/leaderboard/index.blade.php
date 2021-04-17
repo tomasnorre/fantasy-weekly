@@ -67,6 +67,10 @@
             padding-left: 8px;
         }
 
+        td.today {
+            font-size: 12px;
+        }
+
         span {
             margin-right: 2px;
         }
@@ -100,6 +104,7 @@
             <td width='35px'>#</td>
             <td></td>
             <td width='160px'>Player</td>
+            <td>Today</td>
             <td>Score</td>
             <td class='teams'>Teams</td>
         </tr>
@@ -117,6 +122,7 @@
                     @endif
                 </td>
                 <td>{{ $player['lastname'] }}, <span class="firstname">{{ $player['firstname'] }}</span></td>
+                <td class="today">{{ $player['today'] }}</td>
                 <td class="score {{ $player['scoreColor'] }}">{{ $player['score'] }}</td>
                 <td class="teams">
                     @foreach ( $player['teams'] as $team)

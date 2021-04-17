@@ -41,10 +41,17 @@ class Leaderboard extends Controller
                 'position' => $player->MissedCut ? 'MC' : $player->PositionDesc,
                 'lastname' => $player->LastName,
                 'firstname' => $player->FirstName,
+                'today' => $player->RoundScoreToPar === null ? $player->TeeTime : $this->getScore($player->RoundScoreToPar),
                 'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
                 'scoreColor' => $player->ScoreToPar === null ? '-' : $this->getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved),
             ];
+
+            if ($player->MissedCut) {
+                $players[$player->PlayerId]['position'] = $player->Position === null ? $player->PositionDesc : 'MC';
+                $players[$player->PlayerId]['today'] = '';
+                $players[$player->PlayerId]['moved'] = $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved);
+            }
 
             if (in_array($player->PlayerId, $tomas)) {
                 $players[$player->PlayerId]['teams'][] = 't';
@@ -64,6 +71,19 @@ class Leaderboard extends Controller
         }
 
         return $players;
+    }
+
+    private function getScore(int $score): string
+    {
+        if ($score < 0 ) {
+            return (string) $score;
+        }
+
+        if ($score > 0) {
+            return '+' . $score;
+        }
+
+        return 'par';
     }
 
     private function getScoreColor(int $score): string
