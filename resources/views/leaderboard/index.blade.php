@@ -118,10 +118,10 @@
                 <td>{{ $player['position'] }}</td>
                 <td>
                     @if($player['moved']['direction']=='down')
-                        <span class="moved {{ $player['moved']['color'] }}">&#9660;</span><span class="moved">{{ $player['moved']['moved'] }}</span>
+                        <span class="moved red">&#9660;</span><span class="moved">{{ $player['moved']['moved'] }}</span>
                     @endif
                     @if($player['moved']['direction']=='up')
-                        <span class="moved {{ $player['moved']['color'] }}">&#9650;</span><span class="moved">{{ $player['moved']['moved'] }}</span>
+                        <span class="moved green">&#9650;</span><span class="moved">{{ $player['moved']['moved'] }}</span>
                     @endif
                 </td>
                 <td>{{ $player['lastname'] }}, <span class="firstname">{{ $player['firstname'] }}</span></td>

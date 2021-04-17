@@ -102,21 +102,17 @@ class Leaderboard extends Controller
 
     private function getMoved(int $moved): array
     {
-        $color = 'grey';
         $direction = '';
 
         if ($moved < 0 ) {
-            $color = 'red';
             $direction = 'down';
         }
 
         if ($moved > 0) {
-            $color = 'green';
             $direction = 'up';
         }
 
         return [
-            'color' => $color,
             'moved' => abs($moved),
             'direction' => $direction,
         ];
