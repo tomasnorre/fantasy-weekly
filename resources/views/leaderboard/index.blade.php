@@ -64,13 +64,13 @@
             font-size: 12px;
         }
         td.teams {
-            padding-left: 8px;
+            padding-left: 4px;
         }
 
         td.today {
             font-size: 12px;
             text-align: center;
-            width: 50px;
+            width: 55px;
         }
 
         span {
