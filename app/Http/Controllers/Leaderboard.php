@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+use stdClass;
 
 class Leaderboard extends Controller
 {
@@ -21,7 +26,7 @@ class Leaderboard extends Controller
 
     private function getPlayers(): array
     {
-        $data = json_decode(file_get_contents("https://www.europeantour.com/api/sportdata/Leaderboard/Strokeplay/2021152"));
+        $data= $this->getData();
 
         $tomas = [32204, 42481, 40515, 40624, 37017, 39127];
         $kasper = [42481, 37816, 42144, 39127, 35602];
@@ -76,7 +81,7 @@ class Leaderboard extends Controller
 
     private function getScore(int $score): string
     {
-        if ($score < 0 ) {
+        if ($score < 0) {
             return (string) $score;
         }
 
@@ -89,8 +94,8 @@ class Leaderboard extends Controller
 
     private function getScoreColor(int $score): string
     {
-        if ($score < 0 ) {
-           return 'red';
+        if ($score < 0) {
+            return 'red';
         }
 
         if ($score > 0) {
@@ -104,7 +109,7 @@ class Leaderboard extends Controller
     {
         $direction = '';
 
-        if ($moved < 0 ) {
+        if ($moved < 0) {
             $direction = 'down';
         }
 
@@ -116,5 +121,32 @@ class Leaderboard extends Controller
             'moved' => abs($moved),
             'direction' => $direction,
         ];
+    }
+
+    private function getData(): stdClass
+    {
+        $response = null;
+        $dataUrl = 'https://www.europeantour.com/api/sportdata/Leaderboard/Strokeplay/2021152';
+
+        $client = new Client();
+        try {
+            $response = $client->head($dataUrl);
+        } catch (GuzzleException $e) {
+            Log::error('ERROR: GuzzleRequest Failed' . $e->getMessage());
+        }
+
+        if ($response !== null
+            && Cache::has('data-etag')
+            &&  $response->getHeader('ETag')[0] === Cache::get('data-etag')
+        ) {
+            return Cache::get('data');
+        }
+
+        Cache::set(
+            'data',
+            json_decode(file_get_contents($dataUrl), false, 512, JSON_THROW_ON_ERROR)
+        );
+        Cache::set('data-etag',$response->getHeader('ETag')[0]);
+        return Cache::get('data');
     }
 }
