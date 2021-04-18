@@ -35,6 +35,11 @@ class Leaderboard extends Controller
 
         $players = [];
 
+        $tomasCaptain = 37017;
+        $kasperCaptain = 42481;
+        $mortenCaptain = 37816;
+        $havCaptain = 37017;
+
         $combined = array_merge($tomas, $kasper, $morten, $hav);
 
         foreach ($data->Players as $player) {
@@ -59,20 +64,36 @@ class Leaderboard extends Controller
                 $players[$player->PlayerId]['moved'] = $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved);
             }
 
-            if (in_array($player->PlayerId, $tomas)) {
-                $players[$player->PlayerId]['teams'][] = 't';
+            if (in_array($player->PlayerId, $tomas, true)) {
+                if ($player->PlayerId === $tomasCaptain) {
+                    $players[$player->PlayerId]['teams'][] = 'tc';
+                } else {
+                    $players[$player->PlayerId]['teams'][] = 't';
+                }
             }
 
-            if (in_array($player->PlayerId, $kasper)) {
-                $players[$player->PlayerId]['teams'][] = 'k';
+            if (in_array($player->PlayerId, $kasper, true)) {
+                if ($player->PlayerId === $kasperCaptain) {
+                    $players[$player->PlayerId]['teams'][] = 'kc';
+                } else {
+                    $players[$player->PlayerId]['teams'][] = 'k';
+                }
             }
 
-            if (in_array($player->PlayerId, $morten)) {
-                $players[$player->PlayerId]['teams'][] = 'm';
+            if (in_array($player->PlayerId, $morten, true)) {
+                if ($player->PlayerId === $mortenCaptain) {
+                    $players[$player->PlayerId]['teams'][] = 'mc';
+                } else {
+                    $players[$player->PlayerId]['teams'][] = 'm';
+                }
             }
 
             if (in_array($player->PlayerId, $hav)) {
-                $players[$player->PlayerId]['teams'][] = 'h';
+                if ($player->PlayerId === $havCaptain) {
+                    $players[$player->PlayerId]['teams'][] = 'hc';
+                } else {
+                    $players[$player->PlayerId]['teams'][] = 'h';
+                }
             }
         }
 
