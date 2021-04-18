@@ -40,7 +40,7 @@ class ChartController
                 313, // Magic Kenya
                 603, // Dell Technology
                 970, // The Masters
-                0, // Austrian
+                178, // Austrian
             ],
             'Mathias' => [
                 1478, // WGC
@@ -48,7 +48,7 @@ class ChartController
                 105, // Magic Kenya
                 580, // Dell Technology
                 460, // The Masters
-                0, // Austrian
+                229, // Austrian
             ],
             'Morten' => [
                 1094, // WGC
@@ -56,7 +56,7 @@ class ChartController
                 533, // Magic Kenya
                 878, // Dell Technology
                 846, // The Masters
-                0, // Austrian
+                146, // Austrian
             ],
             'Tomas' => [
                 1130, // WGC
@@ -64,7 +64,7 @@ class ChartController
                 68, // Magic Kenya
                 525, // Dell Technology
                 324, // The Masters
-                0, // Austrian
+                247, // Austrian
             ]
         ];
     }
