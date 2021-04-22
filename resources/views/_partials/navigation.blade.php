@@ -1,4 +1,4 @@
-<nav class="flex items-center bg-gray-500 p-3 flex-wrap mb-4">
+<nav class="flex items-center bg-gray-500 p-3 ">
     <img src="{{ asset('images/menu.svg')}}" alt="Logo" title="logo">
     <div>
         <a
