@@ -11,7 +11,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-
+@include('_partials.navigation')
 <div id="chart">
 </div>
 
@@ -42,6 +42,6 @@
 
     Plotly.newPlot('chart', data, layout, config);
 </script>
-
+<script src="{{ asset('js/app.js')}}"></script>
 </body>
 </html>
