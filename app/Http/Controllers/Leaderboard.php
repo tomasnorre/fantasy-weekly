@@ -27,6 +27,7 @@ class Leaderboard extends Controller
                 'first' => true,
                 'cut' => $this->getCut() === 0 ? 1000 : $this->getCut(),
                 'players' => $this->getPlayers(),
+                'course' => $this->getCourse(),
             ]
         );
     }
@@ -43,14 +44,21 @@ class Leaderboard extends Controller
         return $data->Players[0]->ScoreToPar;
     }
 
+    private function getCourse(): array
+    {
+        return [
+            4, 4, 3, 5, 3, 4, 3, 4, 4, 4, 4, 3, 5, 4, 3, 4, 4, 5
+        ];
+    }
+
     private function getPlayers(): array
     {
-        $data= $this->getData();
+        $data = $this->getData();
 
-        $tomas = [42481, 40624, 40120,40721,40515,30345   ];
-        $kasper = [42481, 32111, 40120 , 34563, 39075, 39271 ];
-        $morten = [42481, 32111, 40624,37816,40120, 34563];
-        $hav = [42481, 32111, 40624,37816, 34085, 42143];
+        $tomas = [42481, 40624, 40120, 40721, 40515, 30345];
+        $kasper = [42481, 32111, 40120, 34563, 39075, 39271];
+        $morten = [42481, 32111, 40624, 37816, 40120, 34563];
+        $hav = [42481, 32111, 40624, 37816, 34085, 42143];
 
         $players = [];
 
@@ -187,7 +195,7 @@ class Leaderboard extends Controller
 
         if ($response !== null
             && Cache::has('data-etag')
-            &&  $response->getHeader('ETag')[0] === Cache::get('data-etag')
+            && $response->getHeader('ETag')[0] === Cache::get('data-etag')
         ) {
             return Cache::get('data');
         }

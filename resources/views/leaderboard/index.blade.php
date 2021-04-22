@@ -101,11 +101,19 @@
                                 <table class="min-w-full divide-y divide-gray-200">
                                     @foreach ($player['rounds'] as $round)
                                         <tr>
+                                            <td class="score hole">Hole</td>
                                             @foreach ($round->Holes as $hole)
                                                 <td class="score hole">{{ $hole->HoleNo }}</td>
                                             @endforeach
                                         </tr>
                                         <tr>
+                                            <td class="score hole par">Par</td>
+                                            @foreach ($round->Holes as $holeIndex => $hole)
+                                                <td class="score hole par">{{ $course[$holeIndex] }}</td>
+                                            @endforeach
+                                        </tr>
+                                        <tr>
+                                            <td class="score hole round">R{{ $round->RoundNo }}</td>
                                             @foreach ($round->Holes as $hole)
                                                 <td class="score {{ $hole->ScoreClass }}">{{ $hole->Strokes }}</td>
                                             @endforeach
