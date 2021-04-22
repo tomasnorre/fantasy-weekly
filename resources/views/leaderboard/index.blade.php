@@ -44,6 +44,7 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+                        <tr><td colspan="6" class="bg-gray-400 text-white whitespace-nowrap text-center text-m font-bold">Leading Score {{ $leadingScore }}</td></tr>
                     @foreach ($players as $player)
                         @if ($player['sortOrder']>=$cut && $first == true)
                             <tr><td colspan="6" class="bg-gray-400 text-white whitespace-nowrap text-center text-m font-bold">Projected Cut</td></tr>

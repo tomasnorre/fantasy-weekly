@@ -19,6 +19,7 @@ class Leaderboard extends Controller
         return view(
             'leaderboard.index',
             [
+                'leadingScore' => $this->getLeadingScore(),
                 'first' => true,
                 'cut' => $this->getCut() === 0 ? 1000 : $this->getCut(),
                 'players' => $this->getPlayers(),
@@ -30,6 +31,12 @@ class Leaderboard extends Controller
     {
         $data = $this->getData();
         return $data->CutValue === null ? 0 : $data->CutValue;
+    }
+
+    private function getLeadingScore(): int
+    {
+        $data = $this->getData();
+        return $data->Players[0]->ScoreToPar;
     }
 
     private function getPlayers(): array
