@@ -10,4 +10,10 @@ $(document).ready(function () {
             });
         });
     });
+
+    $(".player").click(function() {
+        let playerId = $(this).attr("id");
+        $( "#scoreCard"+playerId).toggle();
+
+    });
 });

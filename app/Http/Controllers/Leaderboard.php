@@ -11,11 +11,15 @@ use stdClass;
 
 class Leaderboard extends Controller
 {
+    private int $eventId = 2021110;
+
     /**
      * @return Application|Factory|View|RedirectResponse|Redirector
      */
     public function index()
     {
+
+
         return view(
             'leaderboard.index',
             [
@@ -63,6 +67,7 @@ class Leaderboard extends Controller
             }
 
             $players[$player->PlayerId] = [
+                'playerId' => $player->PlayerId,
                 'position' => $player->MissedCut ? 'MC' : $player->PositionDesc,
                 'lastname' => $player->LastName,
                 'firstname' => $player->FirstName,
@@ -72,6 +77,7 @@ class Leaderboard extends Controller
                 'scoreColor' => $player->ScoreToPar === null ? '-' : $this->getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved),
                 'sortOrder' => $player->SortOrder,
+                'rounds' => $this->getScoreCard($this->eventId, $player->PlayerId),
             ];
 
             if ($player->MissedCut) {
@@ -114,6 +120,12 @@ class Leaderboard extends Controller
         }
 
         return $players;
+    }
+
+    private function getScoreCard(int $eventId, int $plageId): array
+    {
+        $data = json_decode(file_get_contents("https://www.europeantour.com/api/sportdata/Scorecard/Strokeplay/Event/$eventId/Player/$plageId"));
+        return $data->Rounds;
     }
 
     private function getScore(int $score): string

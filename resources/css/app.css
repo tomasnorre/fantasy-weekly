@@ -87,3 +87,35 @@ body {
     font-family: 'Nunito', sans-serif;
     font-size: 12px;
 }
+
+td.score.hole {
+    color: black;
+}
+
+td.score.pa {
+    background-color: gray;
+}
+
+td.score.ea {
+    background-color: yellow;
+    color: black;
+}
+
+td.score.bi {
+    background-color: indianred;
+}
+
+td.score.bo {
+    background-color: black;
+    color: white;
+}
+
+td.score.db,
+td.score.tb {
+    background-color: blue;
+    color: white;
+}
+
+.hide {
+    display: none;
+}

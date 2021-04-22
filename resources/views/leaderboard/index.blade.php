@@ -45,15 +45,23 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <tr><td colspan="6" class="bg-gray-400 text-white whitespace-nowrap text-center text-m font-bold">Leading Score {{ $leadingScore }}</td></tr>
+                    <tr>
+                        <td colspan="6" class="bg-gray-400 text-white whitespace-nowrap text-center text-m font-bold">
+                            Leading Score {{ $leadingScore }}</td>
+                    </tr>
                     @foreach ($players as $player)
                         @if ($player['sortOrder']>=$cut && $first == true)
-                            <tr><td colspan="6" class="bg-gray-400 text-white whitespace-nowrap text-center text-m font-bold">Projected Cut</td></tr>
+                            <tr>
+                                <td colspan="6"
+                                    class="bg-gray-400 text-white whitespace-nowrap text-center text-m font-bold">
+                                    Projected Cut
+                                </td>
+                            </tr>
                             @php
-                                $first = false;
+                                $first = false
                             @endphp
                         @endif
-                        <tr>
+                        <tr id="{{ $player['playerId'] }}" class="player">
                             <td class="px-2 py-2 whitespace-nowrap">
                                 {{ $player['position'] }}
                             </td>
@@ -86,6 +94,24 @@
                                             alt="">
                                     @endforeach
                                 </div>
+                            </td>
+                        </tr>
+                        <tr id="scoreCard{{ $player['playerId'] }}" class="scoreCard hide">
+                            <td colspan="6">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    @foreach ($player['rounds'] as $round)
+                                        <tr>
+                                            @foreach ($round->Holes as $hole)
+                                                <td class="score hole">{{ $hole->HoleNo }}</td>
+                                            @endforeach
+                                        </tr>
+                                        <tr>
+                                            @foreach ($round->Holes as $hole)
+                                                <td class="score {{ $hole->ScoreClass }}">{{ $hole->Strokes }}</td>
+                                            @endforeach
+                                        </tr>
+                                    @endforeach
+                                </table>
                             </td>
                         </tr>
                     @endforeach
