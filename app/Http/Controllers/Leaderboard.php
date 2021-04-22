@@ -19,26 +19,34 @@ class Leaderboard extends Controller
         return view(
             'leaderboard.index',
             [
+                'first' => true,
+                'cut' => $this->getCut() === 0 ? 1000 : $this->getCut(),
                 'players' => $this->getPlayers(),
             ]
         );
+    }
+
+    private function getCut(): int
+    {
+        $data = $this->getData();
+        return $data->CutValue === null ? 0 : $data->CutValue;
     }
 
     private function getPlayers(): array
     {
         $data= $this->getData();
 
-        $tomas = [32204, 42481, 40515, 40624, 37017, 39127];
-        $kasper = [42481, 37816, 42144, 39127, 35602];
-        $morten = [37816, 31690, 42481, 37017, 35531, 36078];
-        $hav = [42144, 37017, 34085, 32204, 39042];
+        $tomas = [42481, 40624, 40120,40721,40515,30345   ];
+        $kasper = [42481, 32111, 40120 , 34563, 39075, 39271 ];
+        $morten = [42481, 32111, 40624,37816,40120, 34563];
+        $hav = [42481, 32111, 40624,37816, 34085, 42143];
 
         $players = [];
 
-        $tomasCaptain = 37017;
-        $kasperCaptain = 42481;
-        $mortenCaptain = 37816;
-        $havCaptain = 37017;
+        $tomasCaptain = 40624;
+        $kasperCaptain = 32111;
+        $mortenCaptain = 42481;
+        $havCaptain = 32111;
 
         $combined = array_merge($tomas, $kasper, $morten, $hav);
 
@@ -56,6 +64,7 @@ class Leaderboard extends Controller
                 'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
                 'scoreColor' => $player->ScoreToPar === null ? '-' : $this->getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved),
+                'sortOrder' => $player->SortOrder,
             ];
 
             if ($player->MissedCut) {
@@ -147,7 +156,8 @@ class Leaderboard extends Controller
     private function getData(): stdClass
     {
         $response = null;
-        $dataUrl = 'https://www.europeantour.com/api/sportdata/Leaderboard/Strokeplay/2021152';
+        $dataUrl = 'https://www.europeantour.com/api/sportdata/Leaderboard/Strokeplay/2021110';
+
 
         $client = new Client();
         try {
@@ -167,7 +177,7 @@ class Leaderboard extends Controller
             'data',
             json_decode(file_get_contents($dataUrl), false, 512, JSON_THROW_ON_ERROR)
         );
-        Cache::set('data-etag',$response->getHeader('ETag')[0]);
+        //Cache::set('data-etag',$response->getHeader('ETag')[0]);
         return Cache::get('data');
     }
 }

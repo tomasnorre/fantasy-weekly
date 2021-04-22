@@ -45,6 +45,12 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($players as $player)
+                        @if ($player['sortOrder']>=$cut && $first == true)
+                            <tr><td colspan="6" class="bg-gray-400 text-white whitespace-nowrap text-center text-m font-bold">Projected Cut</td></tr>
+                            @php
+                                $first = false;
+                            @endphp
+                        @endif
                         <tr>
                             <td class="px-2 py-2 whitespace-nowrap">
                                 {{ $player['position'] }}
