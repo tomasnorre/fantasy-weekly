@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use App\Services\DataService;
 use App\Services\LeaderboardService;
 use Illuminate\Contracts\View\View;
@@ -54,6 +55,7 @@ class Leaderboard extends Controller
         return $data->Players[0]->ScoreToPar;
     }
 
+    // Returns the Par of the given course.
     private function getCourse(): array
     {
         return [
@@ -64,19 +66,25 @@ class Leaderboard extends Controller
     private function getPlayers(stdClass $data): array
     {
 
-        $tomas = [42481, 40624, 40120, 40721, 40515, 30345];
-        $kasper = [42481, 32111, 40120, 34563, 39075, 39271];
-        $morten = [42481, 32111, 40624, 37816, 40120, 34563];
-        $hav = [42481, 32111, 40624, 37816, 34085, 42143];
+        $tomasPlayers = [42481, 40624, 40120, 40721, 40515, 30345];
+        $tomasCaptain = 40624;
+        $tomas = new Team('tomas', $tomasCaptain, $tomasPlayers);
+
+        $kasperPlayers = [42481, 32111, 40120, 34563, 39075, 39271];
+        $kasperCaptain = 32111;
+        $kasper = new Team('kasper', $kasperCaptain, $kasperPlayers);
+
+        $mortenPlayers = [42481, 32111, 40624, 37816, 40120, 34563];
+        $mortenCaptain = 42481;
+        $morten = new Team('morten', $mortenCaptain, $mortenPlayers);
+
+        $havPlayers = [42481, 32111, 40624, 37816, 34085, 42143];
+        $havCaptain = 32111;
+        $hav = new Team('hav', $havCaptain, $havPlayers);
 
         $players = [];
 
-        $tomasCaptain = 40624;
-        $kasperCaptain = 32111;
-        $mortenCaptain = 42481;
-        $havCaptain = 32111;
-
-        $combined = array_merge($tomas, $kasper, $morten, $hav);
+        $combined = array_merge($tomas->players, $kasper->players, $morten->players, $hav->players);
 
         foreach ($data->Players as $player) {
             if (! in_array($player->PlayerId, $combined)) {
@@ -103,7 +111,7 @@ class Leaderboard extends Controller
                 $players[$player->PlayerId]['moved'] = $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved);
             }
 
-            if (in_array($player->PlayerId, $tomas, true)) {
+            if (in_array($player->PlayerId, $tomas->players, true)) {
                 if ($player->PlayerId === $tomasCaptain) {
                     $players[$player->PlayerId]['teams'][] = 'tc';
                 } else {
@@ -111,7 +119,7 @@ class Leaderboard extends Controller
                 }
             }
 
-            if (in_array($player->PlayerId, $kasper, true)) {
+            if (in_array($player->PlayerId, $kasper->players, true)) {
                 if ($player->PlayerId === $kasperCaptain) {
                     $players[$player->PlayerId]['teams'][] = 'kc';
                 } else {
@@ -119,7 +127,7 @@ class Leaderboard extends Controller
                 }
             }
 
-            if (in_array($player->PlayerId, $morten, true)) {
+            if (in_array($player->PlayerId, $morten->players, true)) {
                 if ($player->PlayerId === $mortenCaptain) {
                     $players[$player->PlayerId]['teams'][] = 'mc';
                 } else {
@@ -127,7 +135,7 @@ class Leaderboard extends Controller
                 }
             }
 
-            if (in_array($player->PlayerId, $hav)) {
+            if (in_array($player->PlayerId, $hav->players, true)) {
                 if ($player->PlayerId === $havCaptain) {
                     $players[$player->PlayerId]['teams'][] = 'hc';
                 } else {
