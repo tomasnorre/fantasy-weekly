@@ -2,45 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use App\Services\DataService;
+use App\Services\LeaderboardService;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
+use JsonException;
 use stdClass;
+use function App\Services\LeaderboardService;
 
 class Leaderboard extends Controller
 {
     private int $eventId = 2021110;
+    private DataService $dataService;
+    private string $eventUrl;
+
+    public function __construct(DataService $dataService)
+    {
+        $this->dataService = $dataService;
+        $this->eventUrl = "https://www.europeantour.com/api/sportdata/Leaderboard/Strokeplay/$this->eventId";
+    }
 
     /**
      * @return Application|Factory|View|RedirectResponse|Redirector
+     * @throws JsonException
      */
     public function index()
     {
-
+        $data = $this->dataService->getDataFromUrl($this->eventUrl);
 
         return view(
             'leaderboard.index',
             [
-                'leadingScore' => $this->getLeadingScore(),
+                'leadingScore' => $this->getLeadingScore($data),
                 'first' => true,
-                'cut' => $this->getCut() === 0 ? 1000 : $this->getCut(),
-                'players' => $this->getPlayers(),
+                'cut' => $this->getCut($data) === 0 ? 1000 : $this->getCut($data),
+                'players' => $this->getPlayers($data),
                 'course' => $this->getCourse(),
             ]
         );
     }
 
-    private function getCut(): int
+    private function getCut(stdClass $data): int
     {
-        $data = $this->getData();
         return $data->CutValue === null ? 0 : $data->CutValue;
     }
 
-    private function getLeadingScore(): int
+    /**
+     * @throws JsonException
+     */
+    private function getLeadingScore(stdClass $data): int
     {
-        $data = $this->getData();
         return $data->Players[0]->ScoreToPar;
     }
 
@@ -51,9 +61,8 @@ class Leaderboard extends Controller
         ];
     }
 
-    private function getPlayers(): array
+    private function getPlayers(stdClass $data): array
     {
-        $data = $this->getData();
 
         $tomas = [42481, 40624, 40120, 40721, 40515, 30345];
         $kasper = [42481, 32111, 40120, 34563, 39075, 39271];
@@ -79,11 +88,11 @@ class Leaderboard extends Controller
                 'position' => $player->MissedCut ? 'MC' : $player->PositionDesc,
                 'lastname' => $player->LastName,
                 'firstname' => $player->FirstName,
-                'today' => $player->RoundScoreToPar === null ? $player->TeeTime : $this->getScore($player->RoundScoreToPar),
+                'today' => $player->RoundScoreToPar === null ? $player->TeeTime : LeaderboardService::getScore($player->RoundScoreToPar),
                 'played' => $player->HolesPlayed === null ? '' : '(' . $player->HolesPlayedDesc . ')',
                 'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
-                'scoreColor' => $player->ScoreToPar === null ? '-' : $this->getScoreColor($player->ScoreToPar),
-                'moved' => $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved),
+                'scoreColor' => $player->ScoreToPar === null ? '-' : LeaderboardService::getScoreColor($player->ScoreToPar),
+                'moved' => $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved),
                 'sortOrder' => $player->SortOrder,
                 'rounds' => $this->getScoreCard($this->eventId, $player->PlayerId),
             ];
@@ -91,7 +100,7 @@ class Leaderboard extends Controller
             if ($player->MissedCut) {
                 $players[$player->PlayerId]['position'] = $player->Position === null ? $player->PositionDesc : 'MC';
                 $players[$player->PlayerId]['today'] = '';
-                $players[$player->PlayerId]['moved'] = $player->PositionMoved === null ? $this->getMoved(0) : $this->getMoved($player->PositionMoved);
+                $players[$player->PlayerId]['moved'] = $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved);
             }
 
             if (in_array($player->PlayerId, $tomas, true)) {
@@ -130,81 +139,12 @@ class Leaderboard extends Controller
         return $players;
     }
 
-    private function getScoreCard(int $eventId, int $plageId): array
+    /**
+     * @throws JsonException
+     */
+    private function getScoreCard(int $eventId, int $playerId): array
     {
-        $data = json_decode(file_get_contents("https://www.europeantour.com/api/sportdata/Scorecard/Strokeplay/Event/$eventId/Player/$plageId"));
+        $data = $this->dataService->getDataFromUrl("https://www.europeantour.com/api/sportdata/Scorecard/Strokeplay/Event/$eventId/Player/$playerId");
         return $data->Rounds;
-    }
-
-    private function getScore(int $score): string
-    {
-        if ($score < 0) {
-            return (string) $score;
-        }
-
-        if ($score > 0) {
-            return '+' . $score;
-        }
-
-        return 'par';
-    }
-
-    private function getScoreColor(int $score): string
-    {
-        if ($score < 0) {
-            return 'red';
-        }
-
-        if ($score > 0) {
-            return 'black';
-        }
-
-        return 'grey';
-    }
-
-    private function getMoved(int $moved): array
-    {
-        $direction = '';
-
-        if ($moved < 0) {
-            $direction = 'down';
-        }
-
-        if ($moved > 0) {
-            $direction = 'up';
-        }
-
-        return [
-            'moved' => abs($moved),
-            'direction' => $direction,
-        ];
-    }
-
-    private function getData(): stdClass
-    {
-        $response = null;
-        $dataUrl = 'https://www.europeantour.com/api/sportdata/Leaderboard/Strokeplay/2021110';
-
-
-        $client = new Client();
-        try {
-            $response = $client->head($dataUrl);
-        } catch (GuzzleException $e) {
-            Log::error('ERROR: GuzzleRequest Failed' . $e->getMessage());
-        }
-
-        if ($response !== null
-            && Cache::has('data-etag')
-            && $response->getHeader('ETag')[0] === Cache::get('data-etag')
-        ) {
-            return Cache::get('data');
-        }
-
-        Cache::set(
-            'data',
-            json_decode(file_get_contents($dataUrl), false, 512, JSON_THROW_ON_ERROR)
-        );
-        //Cache::set('data-etag',$response->getHeader('ETag')[0]);
-        return Cache::get('data');
     }
 }
