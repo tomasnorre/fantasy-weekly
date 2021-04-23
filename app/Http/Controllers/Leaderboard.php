@@ -36,6 +36,7 @@ class Leaderboard extends Controller
                 'leadingScore' => $this->getLeadingScore($data),
                 'first' => true,
                 'cut' => $this->getCut($data) === 0 ? 1000 : $this->getCut($data),
+                'cutScore' => $this->getCutScore($data),
                 'players' => $this->getPlayers($data),
                 'course' => $this->getCourse(),
             ]
@@ -45,6 +46,13 @@ class Leaderboard extends Controller
     private function getCut(stdClass $data): int
     {
         return $data->CutValue === null ? 0 : $data->CutValue;
+    }
+
+    private function getCutScore(stdClass $data): int
+    {
+        $cutPostion = $this->getCut($data);
+        $cut = $cutPostion - 1;
+        return $data->Players[$cut]->ScoreToPar;
     }
 
     /**

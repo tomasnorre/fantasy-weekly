@@ -54,7 +54,7 @@
                             <tr>
                                 <td colspan="6"
                                     class="bg-gray-400 text-white whitespace-nowrap text-center text-m font-bold">
-                                    Projected Cut
+                                    Projected Cut: {{ $cutScore }}
                                 </td>
                             </tr>
                             @php
