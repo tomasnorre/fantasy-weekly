@@ -99,7 +99,11 @@
                         <tr id="scoreCard{{ $player['playerId'] }}" class="scoreCard hide">
                             <td colspan="6">
                                 <table class="min-w-full divide-y divide-gray-200">
+                                    @php
+                                        $headerPrinted = false;
+                                    @endphp
                                     @foreach ($player['rounds'] as $round)
+                                        @if (!$headerPrinted)
                                         <tr>
                                             <td class="score hole">Hole</td>
                                             @foreach ($round->Holes as $hole)
@@ -112,6 +116,10 @@
                                                 <td class="score hole par">{{ $course[$holeIndex] }}</td>
                                             @endforeach
                                         </tr>
+                                        @endif
+                                        @php
+                                            $headerPrinted = true
+                                        @endphp
                                         <tr>
                                             <td class="score hole round">R{{ $round->RoundNo }}</td>
                                             @foreach ($round->Holes as $hole)
