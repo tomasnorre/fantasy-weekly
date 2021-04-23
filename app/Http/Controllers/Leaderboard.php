@@ -91,13 +91,15 @@ class Leaderboard extends Controller
                 continue;
             }
 
+            $startFirstTee = $player->FirstTee ? '': '*';
+
             $players[$player->PlayerId] = [
                 'playerId' => $player->PlayerId,
                 'position' => $player->MissedCut ? 'MC' : $player->PositionDesc,
                 'lastname' => $player->LastName,
                 'firstname' => $player->FirstName,
                 'today' => $player->RoundScoreToPar === null ? $player->TeeTime : LeaderboardService::getScore($player->RoundScoreToPar),
-                'played' => $player->HolesPlayed === null ? '' : '(' . $player->HolesPlayedDesc . ')',
+                'played' => $player->HolesPlayed === null ? '' : '(' . $player->HolesPlayedDesc . $startFirstTee . ')' ,
                 'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
                 'scoreColor' => $player->ScoreToPar === null ? '-' : LeaderboardService::getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved),
