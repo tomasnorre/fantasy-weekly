@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChartController;
-use App\Http\Controllers\Leaderboard;
+use App\Http\Controllers\LeaderboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Leaderboard::class, 'index']);
+Route::get('/', [LeaderboardController::class, 'index']);
 Route::get('/chart', [ChartController::class, 'index']);

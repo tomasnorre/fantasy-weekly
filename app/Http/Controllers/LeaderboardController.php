@@ -8,9 +8,8 @@ use App\Services\LeaderboardService;
 use Illuminate\Contracts\View\View;
 use JsonException;
 use stdClass;
-use function App\Services\LeaderboardService;
 
-class Leaderboard extends Controller
+class LeaderboardController extends Controller
 {
     private int $eventId = 2021110;
     private DataService $dataService;
