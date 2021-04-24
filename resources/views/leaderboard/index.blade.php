@@ -27,11 +27,11 @@
                             class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         </th>
                         <th scope="col"
-                            class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            class="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Player
                         </th>
                         <th scope="col"
-                            class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            class="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Today
                         </th>
                         <th scope="col"
@@ -75,11 +75,11 @@
                                         class="moved">{{ $player['moved']['moved'] }}</span>
                                 @endif
                             </td>
-                            <td class="px-2 py-2 whitespace-nowrap">
+                            <td class="py-2 whitespace-nowrap">
                                 <div class="text-xs text-gray-900">{{ $player['lastname'] }}</div>
                                 <div class="text-xs text-gray-500">{{ $player['firstname'] }}</div>
                             </td>
-                            <td class="px-2 py-2 whitespace-nowrap text-xs text-gray-500">
+                            <td class="py-2 whitespace-nowrap text-xs text-gray-500">
                                 {{ $player['today'] }} {{ $player['played'] }}
                             </td>
                             <td class="py-2 whitespace-nowrap text-right text-xs font-medium score {{ $player['scoreColor'] }}">
