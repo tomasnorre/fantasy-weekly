@@ -35,7 +35,7 @@
                             Today
                         </th>
                         <th scope="col"
-                            class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            class="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Score
                         </th>
                         <th scope="col"
@@ -62,10 +62,10 @@
                             @endphp
                         @endif
                         <tr id="{{ $player['playerId'] }}" class="player">
-                            <td class="px-2 py-2 whitespace-nowrap">
+                            <td class="px-2 py-2 text-xs whitespace-nowrap">
                                 {{ $player['position'] }}
                             </td>
-                            <td class="whitespace-nowrap">
+                            <td class=" text-xs whitespace-nowrap">
                                 @if($player['moved']['direction']=='down')
                                     <span class="moved red">&#9660;</span><span
                                         class="moved">{{ $player['moved']['moved'] }}</span>
@@ -76,16 +76,16 @@
                                 @endif
                             </td>
                             <td class="px-2 py-2 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $player['lastname'] }}</div>
-                                <div class="text-sm text-gray-500">{{ $player['firstname'] }}</div>
+                                <div class="text-xs text-gray-900">{{ $player['lastname'] }}</div>
+                                <div class="text-xs text-gray-500">{{ $player['firstname'] }}</div>
                             </td>
-                            <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-500">
+                            <td class="px-2 py-2 whitespace-nowrap text-xs text-gray-500">
                                 {{ $player['today'] }} {{ $player['played'] }}
                             </td>
-                            <td class="px-2 py-2 whitespace-nowrap text-right text-sm font-medium score {{ $player['scoreColor'] }}">
+                            <td class="py-2 whitespace-nowrap text-right text-xs font-medium score {{ $player['scoreColor'] }}">
                                 {{ $player['score'] }}
                             </td>
-                            <td class="px-2 py-2 whitespace-nowrap text-center text-sm font-medium teams">
+                            <td class="px-2 py-2 whitespace-nowrap text-center text-xs font-medium teams">
                                 <div class="flex -space-x-1 overflow-hidden">
                                     @foreach ( $player['teams'] as $team)
                                         <img
@@ -98,7 +98,7 @@
                         </tr>
                         <tr id="scoreCard{{ $player['playerId'] }}" class="scoreCard hide">
                             <td colspan="6">
-                                <table class="min-w-full divide-y divide-gray-200">
+                                <table class="scorecard min-w-full divide-y divide-gray-200">
                                     @php
                                         $headerPrinted = false;
                                     @endphp

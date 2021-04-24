@@ -92,28 +92,50 @@ td.score.hole {
     color: black;
 }
 
-td.score.pa {
-    background-color: gray;
+table.scorecard {
+    border-collapse: separate;
 }
 
-td.score.ea {
+table.scorecard tr {
+    height: 20px;
+}
+
+table.scorecard td.score {
+    text-align: center;
+    font-weight: bold;
+    width: 20px;
+    border-radius: 60px;
+}
+
+table.scorecard td.score.ea {
     background-color: yellow;
     color: black;
 }
 
-td.score.bi {
-    background-color: indianred;
+table.scorecard td.score.bi {
+    background-color: #dc1a21;
+    color: white;
+    border: 1px solid #dc1a21;
+
 }
 
-td.score.bo {
+table.scorecard td.score.pa {
+    background-color: gray;
+    border-radius: 0;
+    color: white;
+}
+
+table.scorecard td.score.bo {
     background-color: black;
     color: white;
+    border-radius: 0;
 }
 
-td.score.db,
-td.score.tb {
+table.scorecard td.score.db,
+table.scorecard td.score.tb {
     background-color: blue;
     color: white;
+    border-radius: 0;
 }
 
 .hide {
