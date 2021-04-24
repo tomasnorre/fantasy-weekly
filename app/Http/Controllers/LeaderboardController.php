@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use App\Services\DataService;
 use App\Services\LeaderboardService;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use JsonException;
 use stdClass;
@@ -22,7 +23,7 @@ class LeaderboardController extends Controller
     }
 
     /**
-     * @return Application|Factory|View|RedirectResponse|Redirector
+     * @return Factory|View
      * @throws JsonException
      */
     public function index()
