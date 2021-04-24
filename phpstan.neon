@@ -7,7 +7,7 @@ parameters:
         - "app/"
     excludes_analyse:
         - app/Http/Middleware/Authenticate.php
-    
+
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false

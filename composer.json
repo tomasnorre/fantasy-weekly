@@ -37,6 +37,29 @@
         }
     },
     "scripts": {
+        "code:analyse": [
+            "[ -e vendor/bin/phpstan ] || composer update",
+            "vendor/bin/phpstan analyse"
+        ],
+        "code:analyse-baseline": [
+            "[ -e vendor/bin/phpstan ] || composer update",
+            "vendor/bin/phpstan analyse --generate-baseline"
+        ],
+        "code:psalm": [
+            "[ -e vendor/bin/psalm ] || composer update",
+            "vendor/bin/psalm"
+        ],
+        "code:static": [
+            "@code:analyse",
+            "@code:psalm"
+        ],
+        "test:unit": [
+            "[ -e vendor/bin/phpunit ] || composer update",
+            "vendor/bin/phpunit"
+        ],
+        "test:all": [
+            "@test:unit"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
