@@ -108,7 +108,7 @@ table.scorecard td.score {
 }
 
 table.scorecard td.score.ea {
-    background-color: yellow;
+    background-color: rgb(255, 221, 141);
     color: black;
 }
 
