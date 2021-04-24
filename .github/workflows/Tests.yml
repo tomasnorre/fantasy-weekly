@@ -38,4 +38,8 @@ jobs:
         run: find . -name \*.php ! -path "./.vendor/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
 
       - name: Unit Tests
-        run: vendor/bin/phpunit
+        run: |
+          composer install
+          vendor/bin/phpunit
+
+
