@@ -22,6 +22,7 @@
         "nunomaduro/collision": "^5.0",
         "phpstan/phpstan": "^0.12.84",
         "phpunit/phpunit": "^9.3.3",
+        "rector/rector": "0.10.11",
         "vimeo/psalm": "^4.7"
     },
     "autoload": {
@@ -49,9 +50,14 @@
             "[ -e vendor/bin/psalm ] || composer update",
             "vendor/bin/psalm"
         ],
+        "code:rector": [
+            "[ -e vendor/bin/rector ] || composer update",
+            "vendor/bin/rector --dry-run"
+        ],
         "code:static": [
             "@code:analyse",
-            "@code:psalm"
+            "@code:psalm",
+            "@code:rector"
         ],
         "test:unit": [
             "[ -e vendor/bin/phpunit ] || composer update",
