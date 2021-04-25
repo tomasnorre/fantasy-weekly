@@ -36,6 +36,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             __DIR__ . '/app/Http/Middleware',
             __DIR__ . '/app/Http/Controllers/Controller.php',
             __DIR__ . '/app/Providers',
+	    __DIR__ . '/tests/Acceptance',
             PhpCsFixer\Fixer\StringNotation\ExplicitStringVariableFixer::class,
         ]
     );
