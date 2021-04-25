@@ -23,6 +23,7 @@
         "phpstan/phpstan": "^0.12.84",
         "phpunit/phpunit": "^9.3.3",
         "rector/rector": "0.10.11",
+        "symplify/easy-coding-standard": "9.2.19",
         "vimeo/psalm": "^4.7"
     },
     "autoload": {
@@ -45,6 +46,14 @@
         "code:analyse-baseline": [
             "[ -e vendor/bin/phpstan ] || composer update",
             "vendor/bin/phpstan analyse --generate-baseline"
+        ],
+        "code:style": [
+            "[ -e vendor/bin/ecs ] || composer update",
+            "vendor/bin/ecs check"
+        ],
+        "code:style-fix": [
+            "[ -e vendor/bin/ecs ] || composer update",
+            "vendor/bin/ecs check --fix"
         ],
         "code:psalm": [
             "[ -e vendor/bin/psalm ] || composer update",

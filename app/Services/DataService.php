@@ -38,7 +38,6 @@ class DataService
             Cache::put($cacheIdentifier . '-etag', $response->getHeader('ETag')[0]);
         }
 
-
         return Cache::get($cacheIdentifier);
     }
 }

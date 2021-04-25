@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
@@ -26,9 +25,9 @@ class ChartController
     private function prepareData(array $data): array
     {
         $result = [];
-        foreach($data as $team => $value) {
+        foreach ($data as $team => $value) {
             $total = 0;
-            foreach($value as $val) {
+            foreach ($value as $val) {
                 $total += $val;
                 $result[$team][] = $total;
             }
@@ -71,7 +70,7 @@ class ChartController
                 525, // Dell Technology
                 324, // The Masters
                 247, // Austrian
-            ]
+            ],
         ];
     }
 }

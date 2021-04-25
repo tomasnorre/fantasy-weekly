@@ -7,6 +7,7 @@ namespace App\Models;
 class Team
 {
     public string $identifier;
+
     public int $captain;
 
     /**

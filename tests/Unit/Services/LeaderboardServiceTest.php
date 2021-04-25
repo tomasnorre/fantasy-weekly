@@ -9,73 +9,64 @@ use PHPUnit\Framework\TestCase;
 
 class LeaderboardServiceTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function getScoreColorReturnsExpectedColor(): void
+    public function testGetScoreColorReturnsExpectedColor(): void
     {
-        self::assertEquals(
+        self::assertSame(
             'red',
             LeaderboardService::getScoreColor(-4)
         );
 
-        self::assertEquals(
+        self::assertSame(
             'black',
             LeaderboardService::getScoreColor(3)
         );
 
-        self::assertEquals(
+        self::assertSame(
             'grey',
             LeaderboardService::getScoreColor(0)
         );
     }
 
-    /**
-     * @test
-     */
-    public function getScoreReturnsExpectedScore(): void
+    public function testGetScoreReturnsExpectedScore(): void
     {
-        self::assertEquals(
+        self::assertSame(
             '+5',
             LeaderboardService::getScore(5)
         );
 
-        self::assertEquals(
+        self::assertSame(
             '-5',
             LeaderboardService::getScore(-5)
         );
 
-        self::assertEquals(
+        self::assertSame(
             'par',
             LeaderboardService::getScore(0)
         );
     }
 
-    /**
-     * @test
-     */
-    public function getMovedReturnsExpectedArray(): void
+    public function testGetMovedReturnsExpectedArray(): void
     {
-        self::assertEquals(
+        self::assertSame(
             [
                 'moved' => 6,
-                'direction' => 'up'
+                'direction' => 'up',
             ],
             LeaderboardService::getMoved(6)
         );
 
-        self::assertEquals(
+        self::assertSame(
             [
                 'moved' => 20,
-                'direction' => 'down'
+                'direction' => 'down',
             ],
             LeaderboardService::getMoved(-20)
         );
 
-        self::assertEquals(
+        self::assertSame(
             [
                 'moved' => 0,
-                'direction' => ''
+                'direction' => '',
             ],
             LeaderboardService::getMoved(0)
         );

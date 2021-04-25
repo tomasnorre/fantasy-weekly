@@ -13,7 +13,9 @@ use stdClass;
 class LeaderboardController extends Controller
 {
     private int $eventId = 2021110;
+
     private DataService $dataService;
+
     private string $eventUrl;
 
     public function __construct(DataService $dataService)
@@ -67,13 +69,12 @@ class LeaderboardController extends Controller
     private function getCourse(): array
     {
         return [
-            4, 4, 3, 5, 3, 4, 3, 4, 4, 4, 4, 3, 5, 4, 3, 4, 4, 5
+            4, 4, 3, 5, 3, 4, 3, 4, 4, 4, 4, 3, 5, 4, 3, 4, 4, 5,
         ];
     }
 
     private function getPlayers(stdClass $data): array
     {
-
         $tomasPlayers = [42481, 40624, 40120, 40721, 40515, 30345];
         $tomasCaptain = 40624;
         $tomas = new Team('tomas', $tomasCaptain, $tomasPlayers);
@@ -95,11 +96,11 @@ class LeaderboardController extends Controller
         $combined = array_merge($tomas->players, $kasper->players, $morten->players, $hav->players);
 
         foreach ($data->Players as $player) {
-            if (! in_array($player->PlayerId, $combined)) {
+            if (! in_array($player->PlayerId, $combined, true)) {
                 continue;
             }
 
-            $startFirstTee = $player->FirstTee ? '': '*';
+            $startFirstTee = $player->FirstTee ? '' : '*';
 
             $players[$player->PlayerId] = [
                 'playerId' => $player->PlayerId,
@@ -107,7 +108,7 @@ class LeaderboardController extends Controller
                 'lastname' => $player->LastName,
                 'firstname' => $player->FirstName,
                 'today' => $player->RoundScoreToPar === null ? $player->TeeTime : LeaderboardService::getScore($player->RoundScoreToPar),
-                'played' => $player->HolesPlayed === null ? '' : '(' . $player->HolesPlayedDesc . $startFirstTee . ')' ,
+                'played' => $player->HolesPlayed === null ? '' : '(' . $player->HolesPlayedDesc . $startFirstTee . ')',
                 'score' => $player->ScoreToPar > 0 ? '+' . $player->ScoreToPar : $player->ScoreToPar,
                 'scoreColor' => $player->ScoreToPar === null ? '-' : LeaderboardService::getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved),
