@@ -25,6 +25,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             __DIR__ . '/app/Exceptions/',
             __DIR__ . '/app/Http/Middleware/',
             __DIR__ . '/app/Providers/',
+            \Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector::class,
         ]
     );
 
