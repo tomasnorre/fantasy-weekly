@@ -46,6 +46,7 @@ class ChartController
                 603, // Dell Technology
                 970, // The Masters
                 178, // Austrian
+                113, // Gran Canaria Open
             ],
             'Mathias' => [
                 1478, // WGC
@@ -54,6 +55,7 @@ class ChartController
                 580, // Dell Technology
                 460, // The Masters
                 229, // Austrian
+                297, // Gran Canaria Open
             ],
             'Morten' => [
                 1094, // WGC
@@ -62,6 +64,7 @@ class ChartController
                 878, // Dell Technology
                 846, // The Masters
                 146, // Austrian
+                244, // Gran Canaria Open
             ],
             'Tomas' => [
                 1130, // WGC
@@ -70,6 +73,7 @@ class ChartController
                 525, // Dell Technology
                 324, // The Masters
                 247, // Austrian
+                333, // Gran Canaria Open
             ],
         ];
     }
