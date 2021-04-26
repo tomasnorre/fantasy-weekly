@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.4 || ^8.0",
         "ext-json": "*",
         "deployer/deployer": "v7.0.0-beta.20",
         "fideloper/proxy": "^4.4",
@@ -33,6 +33,16 @@
         "symplify/easy-coding-standard": "9.2.19",
         "vimeo/psalm": "^4.7"
     },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
@@ -45,7 +55,19 @@
             "Tests\\": "tests/"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
         "code:analyse": [
             "[ -e vendor/bin/phpstan ] || composer update",
             "vendor/bin/phpstan analyse"
@@ -53,14 +75,6 @@
         "code:analyse-baseline": [
             "[ -e vendor/bin/phpstan ] || composer update",
             "vendor/bin/phpstan analyse --generate-baseline"
-        ],
-        "code:style": [
-            "[ -e vendor/bin/ecs ] || composer update",
-            "vendor/bin/ecs check"
-        ],
-        "code:style-fix": [
-            "[ -e vendor/bin/ecs ] || composer update",
-            "vendor/bin/ecs check --fix"
         ],
         "code:psalm": [
             "[ -e vendor/bin/psalm ] || composer update",
@@ -75,42 +89,28 @@
             "@code:psalm",
             "@code:rector"
         ],
-        "test:unit": [
-            "[ -e vendor/bin/phpunit ] || composer update",
-            "vendor/bin/phpunit"
+        "code:style": [
+            "[ -e vendor/bin/ecs ] || composer update",
+            "vendor/bin/ecs check"
         ],
-        "test:all": [
-            "@test:unit"
+        "code:style-fix": [
+            "[ -e vendor/bin/ecs ] || composer update",
+            "vendor/bin/ecs check --fix"
+        ],
+        "deploy": [
+            "[ -e vendor/bin/dep ] || composer update",
+            "vendor/bin/dep deploy"
         ],
         "pest:unit": [
             "[ -e vendor/bin/pest ] || composer update",
             "XDEBUG_MODE='coverage' ./vendor/bin/pest --coverage"
         ],
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+        "test:all": [
+            "@test:unit"
         ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ],
-        "deploy": [
-            "[ -e vendor/bin/dep ] || composer update",
-            "vendor/bin/dep deploy"
+        "test:unit": [
+            "[ -e vendor/bin/phpunit ] || composer update",
+            "vendor/bin/phpunit"
         ]
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
