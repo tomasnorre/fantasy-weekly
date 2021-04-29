@@ -73,7 +73,7 @@ class LeaderboardController extends Controller
     private function getCourse(): array
     {
         return [
-            4, 4, 3, 5, 3, 4, 3, 4, 4, 4, 4, 3, 5, 4, 3, 4, 4, 5,
+            5, 3, 5, 4, 3, 4, 3, 4, 4, 3, 5, 4, 5, 3, 4, 3, 4, 5,
         ];
     }
 
@@ -117,7 +117,7 @@ class LeaderboardController extends Controller
                 'scoreColor' => $player->ScoreToPar === null ? '-' : LeaderboardService::getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved),
                 'sortOrder' => $player->SortOrder,
-                'rounds' => [], // $this->getScoreCard($this->eventId, $player->PlayerId),
+                'rounds' => $player->RoundScoreToPar !== null ? $this->getScoreCard($this->eventId, $player->PlayerId) : [],
             ];
 
             if ($player->MissedCut) {
