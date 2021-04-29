@@ -12,7 +12,7 @@ use stdClass;
 
 class LeaderboardController extends Controller
 {
-    private int $eventId = 2021110;
+    private int $eventId = 2021109;
 
     private DataService $dataService;
 
@@ -54,6 +54,10 @@ class LeaderboardController extends Controller
     {
         $cutPostion = $this->getCut($data);
         $cut = $cutPostion - 1;
+        if ($cut < 1) {
+            return 0;
+        }
+
         return $data->Players[$cut]->ScoreToPar;
     }
 
@@ -62,7 +66,7 @@ class LeaderboardController extends Controller
      */
     private function getLeadingScore(stdClass $data): int
     {
-        return $data->Players[0]->ScoreToPar;
+        return $data->Players[0]->ScoreToPar ?? 0;
     }
 
     // Returns the Par of the given course.
@@ -75,20 +79,20 @@ class LeaderboardController extends Controller
 
     private function getPlayers(stdClass $data): array
     {
-        $tomasPlayers = [42481, 40624, 40120, 40721, 40515, 30345];
-        $tomasCaptain = 40624;
+        $tomasPlayers = [37791, 40120, 36867, 37579, 34653, 34151];
+        $tomasCaptain = 37791;
         $tomas = new Team('tomas', $tomasCaptain, $tomasPlayers);
 
-        $kasperPlayers = [42481, 32111, 40120, 34563, 39075, 39271];
-        $kasperCaptain = 32111;
+        $kasperPlayers = [40120, 36343, 35419, 36519, 42481, 39271];
+        $kasperCaptain = 40120;
         $kasper = new Team('kasper', $kasperCaptain, $kasperPlayers);
 
-        $mortenPlayers = [42481, 32111, 40624, 37816, 40120, 34563];
-        $mortenCaptain = 42481;
+        $mortenPlayers = [40120, 35419, 34488, 36519, 42648, 37816];
+        $mortenCaptain = 40120;
         $morten = new Team('morten', $mortenCaptain, $mortenPlayers);
 
-        $havPlayers = [42481, 32111, 40624, 37816, 34085, 42143];
-        $havCaptain = 32111;
+        $havPlayers = [36519, 34085, 42481, 37816, 42372, 38296];
+        $havCaptain = 36519;
         $hav = new Team('hav', $havCaptain, $havPlayers);
 
         $players = [];
@@ -113,7 +117,7 @@ class LeaderboardController extends Controller
                 'scoreColor' => $player->ScoreToPar === null ? '-' : LeaderboardService::getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved),
                 'sortOrder' => $player->SortOrder,
-                'rounds' => $this->getScoreCard($this->eventId, $player->PlayerId),
+                'rounds' => [], // $this->getScoreCard($this->eventId, $player->PlayerId),
             ];
 
             if ($player->MissedCut) {
