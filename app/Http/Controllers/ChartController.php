@@ -47,6 +47,7 @@ class ChartController
                 970, // The Masters
                 178, // Austrian
                 113, // Gran Canaria Open
+                91, // Tenerife Open
             ],
             'Mathias' => [
                 1478, // WGC
@@ -56,6 +57,7 @@ class ChartController
                 460, // The Masters
                 229, // Austrian
                 297, // Gran Canaria Open
+                163, // Tenerife Open
             ],
             'Morten' => [
                 1094, // WGC
@@ -65,6 +67,7 @@ class ChartController
                 846, // The Masters
                 146, // Austrian
                 244, // Gran Canaria Open
+                104, // Tenerife Open
             ],
             'Tomas' => [
                 1130, // WGC
@@ -74,6 +77,7 @@ class ChartController
                 324, // The Masters
                 247, // Austrian
                 333, // Gran Canaria Open
+                66, // Tenerife Open
             ],
         ];
     }
