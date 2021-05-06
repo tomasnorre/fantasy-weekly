@@ -118,7 +118,7 @@ class LeaderboardController extends Controller
                 'scoreColor' => $player->ScoreToPar === null ? '-' : LeaderboardService::getScoreColor($player->ScoreToPar),
                 'moved' => $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved),
                 'sortOrder' => $player->SortOrder,
-                'rounds' => $player->ScoreToPar !== null ? $this->getScoreCard($this->eventId, $player->PlayerId) : [],
+                'rounds' => $player->RoundScoreToPar !== null ? $this->getScoreCard($this->eventId, $player->PlayerId) : [],
             ];
 
             if ($player->MissedCut) {
