@@ -12,7 +12,7 @@ use stdClass;
 
 class LeaderboardController extends Controller
 {
-    private int $eventId = 2021153;
+    private int $eventId = 2021113;
 
     private DataService $dataService;
 
@@ -80,25 +80,26 @@ class LeaderboardController extends Controller
 
     private function getPlayers(stdClass $data): array
     {
-        $tomasCaptain = 37979;
-        $tomasPlayers = [36485, 40872, 37979, 34488, 37624, 42372];
-        $tomas = new Team('tomas', $tomasCaptain, $tomasPlayers);
+        $tomasCaptain = 41227;
+        $tomasPlayers = [41227, 38119, 40624, 32204, 37979, 33676];
+        $tomas = new Team(['identifier' => 'tomas', 'captain' => $tomasCaptain, 'players' => $tomasPlayers]);
 
-        $kasperCaptain = 42648;
-        $kasperPlayers = [42372, 42143, 42648, 37086, 37791, 36485];
-        $kasper = new Team('kasper', $kasperCaptain, $kasperPlayers);
+        $kasperCaptain = 41227;
+        $kasperPlayers = [41227, 36932, 31183, 36519, 42144, 37017];
+        $kasper = new Team(['identifier' => 'kasper', 'captain' => $kasperCaptain, 'players' => $kasperPlayers]);
 
-        $mortenCaptain = 34488;
-        $mortenPlayers = [37979, 34488, 42372, 36485, 41420, 39271];
-        $morten = new Team('morten', $mortenCaptain, $mortenPlayers);
+        $mortenCaptain = 37841;
+        $mortenPlayers = [37841, 37979, 41227, 40624, 42648, 37816];
+        $morten = new Team(['identifier' => 'morten', 'captain' => $mortenCaptain, 'players' => $mortenPlayers]);
 
-        $havCaptain = 42372;
-        $havPlayers = [37841, 31267, 42143, 34488, 42372, 41721];
-        $hav = new Team('hav', $havCaptain, $havPlayers);
+
+        $havCaptain = 36519;
+        $havPlayers = [36519, 42144, 36932, 41227, 32204, 41721];
+        $hav = new Team(['identifier' => 'hav', 'captain' => $havCaptain, 'players' => $havPlayers]);
 
         $players = [];
 
-        $combined = array_merge($tomas->players, $kasper->players, $morten->players, $hav->players);
+        $combined = array_merge($tomas->getPlayers(), $kasper->getPlayers(), $morten->getPlayers(), $hav->getPlayers());
 
         foreach ($data->Players as $player) {
             if (! in_array($player->PlayerId, $combined, true)) {
@@ -127,7 +128,7 @@ class LeaderboardController extends Controller
                 $players[$player->PlayerId]['moved'] = $player->PositionMoved === null ? LeaderboardService::getMoved(0) : LeaderboardService::getMoved($player->PositionMoved);
             }
 
-            if (in_array($player->PlayerId, $tomas->players, true)) {
+            if (in_array($player->PlayerId, $tomas->getPlayers(), true)) {
                 if ($player->PlayerId === $tomasCaptain) {
                     $players[$player->PlayerId]['teams'][] = 'tc';
                 } else {
@@ -135,7 +136,7 @@ class LeaderboardController extends Controller
                 }
             }
 
-            if (in_array($player->PlayerId, $kasper->players, true)) {
+            if (in_array($player->PlayerId, $kasper->getPlayers(), true)) {
                 if ($player->PlayerId === $kasperCaptain) {
                     $players[$player->PlayerId]['teams'][] = 'kc';
                 } else {
@@ -143,7 +144,7 @@ class LeaderboardController extends Controller
                 }
             }
 
-            if (in_array($player->PlayerId, $morten->players, true)) {
+            if (in_array($player->PlayerId, $morten->getPlayers(), true)) {
                 if ($player->PlayerId === $mortenCaptain) {
                     $players[$player->PlayerId]['teams'][] = 'mc';
                 } else {
@@ -151,7 +152,7 @@ class LeaderboardController extends Controller
                 }
             }
 
-            if (in_array($player->PlayerId, $hav->players, true)) {
+            if (in_array($player->PlayerId, $hav->getPlayers(), true)) {
                 if ($player->PlayerId === $havCaptain) {
                     $players[$player->PlayerId]['teams'][] = 'hc';
                 } else {
