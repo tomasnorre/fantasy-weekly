@@ -49,6 +49,7 @@ class ChartController
                 113, // Gran Canaria Open
                 91, // Tenerife Open
                 696, // Canary Islands Championship
+                245, // British Masters
             ],
             'Mathias' => [
                 1478, // WGC
@@ -60,6 +61,7 @@ class ChartController
                 297, // Gran Canaria Open
                 163, // Tenerife Open
                 1180, // Canary Islands Championship
+                166, // British Masters
             ],
             'Morten' => [
                 1094, // WGC
@@ -71,6 +73,7 @@ class ChartController
                 244, // Gran Canaria Open
                 104, // Tenerife Open
                 656, // Canary Islands Championship
+                477, // British Masters
             ],
             'Tomas' => [
                 1130, // WGC
@@ -82,6 +85,7 @@ class ChartController
                 333, // Gran Canaria Open
                 66, // Tenerife Open
                 779, // Canary Islands Championship
+                449, // British Masters
             ],
         ];
     }
