@@ -50,6 +50,7 @@ class ChartController
                 91, // Tenerife Open
                 696, // Canary Islands Championship
                 245, // British Masters
+                354, // US PGA
             ],
             'Mathias' => [
                 1478, // WGC
@@ -62,6 +63,7 @@ class ChartController
                 163, // Tenerife Open
                 1180, // Canary Islands Championship
                 166, // British Masters
+                580, // US PGA
             ],
             'Morten' => [
                 1094, // WGC
@@ -74,6 +76,7 @@ class ChartController
                 104, // Tenerife Open
                 656, // Canary Islands Championship
                 477, // British Masters
+                669, // US PGA
             ],
             'Tomas' => [
                 1130, // WGC
@@ -86,6 +89,7 @@ class ChartController
                 66, // Tenerife Open
                 779, // Canary Islands Championship
                 449, // British Masters
+                823, // US PGA
             ],
         ];
     }
