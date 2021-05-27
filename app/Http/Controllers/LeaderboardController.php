@@ -58,7 +58,7 @@ class LeaderboardController extends Controller
             return 0;
         }
 
-        return 0; //$data->Players[$cut]->ScoreToPar;
+        $data->Players[$cut]->ScoreToPar;
     }
 
     /**
@@ -73,8 +73,8 @@ class LeaderboardController extends Controller
     private function getCourse(): array
     {
         return [
-            5, 3, 5, 4, 3, 4, 3, 4, 4,
-            3, 5, 4, 5, 3, 4, 3, 4, 5,
+            4, 4, 3, 4, 5, 3, 4, 5, 4,
+            3, 5, 4, 4, 4, 4, 3, 4, 4
         ];
     }
 
