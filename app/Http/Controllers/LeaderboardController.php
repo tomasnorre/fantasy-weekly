@@ -52,13 +52,13 @@ class LeaderboardController extends Controller
 
     private function getCutScore(stdClass $data): int
     {
-        $cutPostion = $this->getCut($data);
-        $cut = $cutPostion - 1;
+        $cutPosition = $this->getCut($data);
+        $cut = $cutPosition - 1;
         if ($cut < 1) {
             return 0;
         }
 
-        $data->Players[$cut]->ScoreToPar;
+        return $data->Players[$cut]->ScoreToPar;
     }
 
     /**
