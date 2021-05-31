@@ -51,6 +51,7 @@ class ChartController
                 696, // Canary Islands Championship
                 245, // British Masters
                 354, // US PGA
+                896, // Himmerland
             ],
             'Mathias' => [
                 1478, // WGC
@@ -64,6 +65,7 @@ class ChartController
                 1180, // Canary Islands Championship
                 166, // British Masters
                 580, // US PGA
+                558, // Himmerland
             ],
             'Morten' => [
                 1094, // WGC
@@ -77,6 +79,7 @@ class ChartController
                 656, // Canary Islands Championship
                 477, // British Masters
                 669, // US PGA
+                532, // Himmerland
             ],
             'Tomas' => [
                 1130, // WGC
@@ -90,6 +93,7 @@ class ChartController
                 779, // Canary Islands Championship
                 449, // British Masters
                 823, // US PGA
+                532, // Himmerland
             ],
         ];
     }
