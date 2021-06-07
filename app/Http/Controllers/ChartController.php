@@ -52,6 +52,7 @@ class ChartController
                 245, // British Masters
                 354, // US PGA
                 896, // Himmerland
+                56, // Porsche
             ],
             'Mathias' => [
                 1478, // WGC
@@ -66,6 +67,7 @@ class ChartController
                 166, // British Masters
                 580, // US PGA
                 558, // Himmerland
+                249, // Porsche
             ],
             'Morten' => [
                 1094, // WGC
@@ -80,6 +82,7 @@ class ChartController
                 477, // British Masters
                 669, // US PGA
                 532, // Himmerland
+                302, // Porsche
             ],
             'Tomas' => [
                 1130, // WGC
@@ -94,6 +97,7 @@ class ChartController
                 449, // British Masters
                 823, // US PGA
                 532, // Himmerland
+                75, // Porsche
             ],
         ];
     }
