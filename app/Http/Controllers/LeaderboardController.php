@@ -12,7 +12,7 @@ use stdClass;
 
 class LeaderboardController extends Controller
 {
-    private int $eventId = 2021116;
+    private int $eventId = 2021117;
 
     private DataService $dataService;
 
@@ -58,7 +58,7 @@ class LeaderboardController extends Controller
             return 0;
         }
 
-        return $data->Players[$cut]->ScoreToPar;
+        return 0;//$data->Players[$cut]->ScoreToPar;
     }
 
     /**
@@ -73,28 +73,28 @@ class LeaderboardController extends Controller
     private function getCourse(): array
     {
         return [
-            4, 4, 3, 4, 5, 3, 4, 5, 4,
-            3, 5, 4, 4, 4, 4, 3, 4, 4
+            4, 4, 4, 5, 3, 5, 4, 3, 4,
+            5, 3, 4, 4, 4, 3, 5, 4, 4
         ];
     }
 
     private function getPlayers(stdClass $data): array
     {
-        $tomasCaptain = 33083;
-        $tomasPlayers = [35419, 2090, 33337, 36485, 33083, 42143];
+        $tomasCaptain = 39127;
+        $tomasPlayers = [37769, 39127, 37793, 36485, 35853, 38536];
         $tomas = new Team(['identifier' => 'tomas', 'captain' => $tomasCaptain, 'players' => $tomasPlayers]);
 
-        $kasperCaptain = 41011;
-        $kasperPlayers = [41011, 33676, 42481, 36519, 32435, 42143];
+        $kasperCaptain = 41612;
+        $kasperPlayers = [36485, 42143, 35358, 41612, 40624, 35509];
         $kasper = new Team(['identifier' => 'kasper', 'captain' => $kasperCaptain, 'players' => $kasperPlayers]);
 
-        $mortenCaptain = 30788;
-        $mortenPlayers = [33676, 30788, 37017, 42648, 42474];
+        $mortenCaptain = 36485;
+        $mortenPlayers = [40872, 40624, 35853, 36485, 37585, 41721];
         $morten = new Team(['identifier' => 'morten', 'captain' => $mortenCaptain, 'players' => $mortenPlayers]);
 
 
-        $havCaptain = 36519;
-        $havPlayers = [42144, 36519, 37017, 33676, 32204, 30788];
+        $havCaptain = 37585;
+        $havPlayers = [34085, 2090, 41721, 37585, 39042, 42143];
         $hav = new Team(['identifier' => 'hav', 'captain' => $havCaptain, 'players' => $havPlayers]);
 
         $players = [];
