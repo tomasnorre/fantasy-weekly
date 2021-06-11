@@ -58,7 +58,7 @@ class LeaderboardController extends Controller
             return 0;
         }
 
-        return 0;//$data->Players[$cut]->ScoreToPar;
+        return $data->Players[$cut]->ScoreToPar;
     }
 
     /**
