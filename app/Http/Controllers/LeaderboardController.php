@@ -12,7 +12,7 @@ use stdClass;
 
 class LeaderboardController extends Controller
 {
-    private int $eventId = 2021117;
+    private int $eventId = 2021118;
 
     private DataService $dataService;
 
@@ -58,7 +58,7 @@ class LeaderboardController extends Controller
             return 0;
         }
 
-        return $data->Players[$cut]->ScoreToPar;
+        return 0; //$data->Players[$cut]->ScoreToPar;
     }
 
     /**
@@ -73,28 +73,28 @@ class LeaderboardController extends Controller
     private function getCourse(): array
     {
         return [
-            4, 4, 4, 5, 3, 5, 4, 3, 4,
-            5, 3, 4, 4, 4, 3, 5, 4, 4
+            4, 4, 3, 4, 4, 4, 4, 3, 5,
+            4, 3, 4, 4, 4, 4, 3, 4, 5
         ];
     }
 
     private function getPlayers(stdClass $data): array
     {
-        $tomasCaptain = 39127;
-        $tomasPlayers = [37769, 39127, 37793, 36485, 35853, 38536];
+        $tomasCaptain = 40148;
+        $tomasPlayers = [30788, 40148, 35600, 42372, 39790, 3289];
         $tomas = new Team(['identifier' => 'tomas', 'captain' => $tomasCaptain, 'players' => $tomasPlayers]);
 
         $kasperCaptain = 41612;
-        $kasperPlayers = [36485, 42143, 35358, 41612, 40624, 35509];
+        $kasperPlayers = [34737, 35600, 32015, 39474, 2133, 39271];
         $kasper = new Team(['identifier' => 'kasper', 'captain' => $kasperCaptain, 'players' => $kasperPlayers]);
 
-        $mortenCaptain = 36485;
-        $mortenPlayers = [40872, 40624, 35853, 36485, 37585, 41721];
+        $mortenCaptain = 41208;
+        $mortenPlayers = [41208, 43410, 40148, 40617, 35600, 30788];
         $morten = new Team(['identifier' => 'morten', 'captain' => $mortenCaptain, 'players' => $mortenPlayers]);
 
 
-        $havCaptain = 37585;
-        $havPlayers = [34085, 2090, 41721, 37585, 39042, 42143];
+        $havCaptain = 41208;
+        $havPlayers = [43410, 41208, 40148, 38439, 39474, 34024];
         $hav = new Team(['identifier' => 'hav', 'captain' => $havCaptain, 'players' => $havPlayers]);
 
         $players = [];
