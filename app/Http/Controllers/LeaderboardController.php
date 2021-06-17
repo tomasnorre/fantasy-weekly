@@ -84,7 +84,7 @@ class LeaderboardController extends Controller
         $tomasPlayers = [30788, 40148, 35600, 42372, 39790, 3289];
         $tomas = new Team(['identifier' => 'tomas', 'captain' => $tomasCaptain, 'players' => $tomasPlayers]);
 
-        $kasperCaptain = 41612;
+        $kasperCaptain = 32015;
         $kasperPlayers = [34737, 35600, 32015, 39474, 2133, 39271];
         $kasper = new Team(['identifier' => 'kasper', 'captain' => $kasperCaptain, 'players' => $kasperPlayers]);
 
