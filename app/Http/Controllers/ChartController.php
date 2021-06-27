@@ -55,6 +55,7 @@ class ChartController
                 56, // Porsche
                 61, // Scandinavian mix
                 2751, // US Open
+                547, // BWM International Open
             ],
             'Mathias' => [
                 1478, // WGC
@@ -72,6 +73,7 @@ class ChartController
                 249, // Porsche
                 161, // Scandinavian mix
                 4127, // US Open
+                669, // BWM International Open
             ],
             'Morten' => [
                 1094, // WGC
@@ -89,6 +91,7 @@ class ChartController
                 302, // Porsche
                 176, // Scandinavian mix
                 4072, // US Open
+                678, // BWM International Open
             ],
             'Tomas' => [
                 1130, // WGC
@@ -106,6 +109,7 @@ class ChartController
                 75, // Porsche
                 410, // Scandinavian mix
                 461, // US Open
+                198, // BWM International Open
             ],
         ];
     }
