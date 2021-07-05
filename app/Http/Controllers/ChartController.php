@@ -56,6 +56,7 @@ class ChartController
                 61, // Scandinavian mix
                 2751, // US Open
                 547, // BWM International Open
+                155, // Irish Open
             ],
             'Mathias' => [
                 1478, // WGC
@@ -74,6 +75,7 @@ class ChartController
                 161, // Scandinavian mix
                 4127, // US Open
                 669, // BWM International Open
+                213, // Irish Open
             ],
             'Morten' => [
                 1094, // WGC
@@ -92,6 +94,7 @@ class ChartController
                 176, // Scandinavian mix
                 4072, // US Open
                 678, // BWM International Open
+                147, // Irish Open
             ],
             'Tomas' => [
                 1130, // WGC
@@ -110,6 +113,7 @@ class ChartController
                 410, // Scandinavian mix
                 461, // US Open
                 198, // BWM International Open
+                192, // Irish Open
             ],
         ];
     }

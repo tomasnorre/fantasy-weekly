@@ -19,7 +19,7 @@
 <script type="text/javascript">
     @foreach ($data as $team => $value)
         var {{ $team }} = {
-            x: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+            x: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
             y: [
                 @foreach ($value as $val)
                     {{ $val }},
