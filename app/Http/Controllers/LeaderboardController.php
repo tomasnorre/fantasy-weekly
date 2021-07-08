@@ -12,7 +12,7 @@ use stdClass;
 
 class LeaderboardController extends Controller
 {
-    private int $eventId = 2021120;
+    private int $eventId = 2021121;
 
     private DataService $dataService;
 
@@ -73,28 +73,28 @@ class LeaderboardController extends Controller
     private function getCourse(): array
     {
         return [
-            4, 4, 3, 4, 5, 3, 4, 5, 4,
-            5, 3, 4, 4, 4, 4, 4, 5, 5
+            4, 4, 5, 4, 4, 3, 5, 4, 3,
+            5, 4, 3, 4, 3, 4, 5, 3, 4
         ];
     }
 
     private function getPlayers(stdClass $data): array
     {
-        $tomasCaptain = 34024;
-        $tomasPlayers = [36489, 39790, 34024, 38017, 32204, 35371];
+        $tomasCaptain = 32204;
+        $tomasPlayers = [41208, 39594, 43410, 32204, 34024, 9486];
         $tomas = new Team(['identifier' => 'tomas', 'captain' => $tomasCaptain, 'players' => $tomasPlayers]);
 
-        $kasperCaptain = 293;
-        $kasperPlayers = [40624, 42648, 35853, 34488, 293, 32204];
+        $kasperCaptain = 33676;
+        $kasperPlayers = [41208, 39474, 34488, 33676, 42372, 39271];
         $kasper = new Team(['identifier' => 'kasper', 'captain' => $kasperCaptain, 'players' => $kasperPlayers]);
 
-        $mortenCaptain = 34024;
-        $mortenPlayers = [34024, 35371, 36489, 37841, 40624, 32204];
+        $mortenCaptain = 41208;
+        $mortenPlayers = [43410, 35371, 39790, 41208, 33676, 39474];
         $morten = new Team(['identifier' => 'morten', 'captain' => $mortenCaptain, 'players' => $mortenPlayers]);
 
 
         $havCaptain = 34024;
-        $havPlayers = [34024, 35371, 39790, 36519, 42144, 36814];
+        $havPlayers = [34024, 35371, 39790, 41208, 42144, 43410];
         $hav = new Team(['identifier' => 'hav', 'captain' => $havCaptain, 'players' => $havPlayers]);
 
         $players = [];
