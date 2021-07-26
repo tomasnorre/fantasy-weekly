@@ -58,6 +58,8 @@ class ChartController
                 547, // BWM International Open
                 155, // Irish Open
                 1135, // Scottish Open
+                1947, // The Open
+                357, // Gazoo Open
             ],
             'Mathias' => [
                 1478, // WGC
@@ -78,6 +80,8 @@ class ChartController
                 669, // BWM International Open
                 213, // Irish Open
                 368, // Scottish Open
+                3049, // The Open
+                120, // Gazoo Open
             ],
             'Morten' => [
                 1094, // WGC
@@ -98,6 +102,8 @@ class ChartController
                 678, // BWM International Open
                 147, // Irish Open
                 1375, // Scottish Open
+                1952, // The Open
+                429, // Gazoo Open
             ],
             'Tomas' => [
                 1130, // WGC
@@ -118,6 +124,8 @@ class ChartController
                 198, // BWM International Open
                 192, // Irish Open
                 500, // Scottish Open
+                1390, // The Open
+                76, // Gazoo Open
             ],
         ];
     }
