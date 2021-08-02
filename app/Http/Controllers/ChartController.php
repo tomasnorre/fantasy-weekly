@@ -60,6 +60,7 @@ class ChartController
                 1135, // Scottish Open
                 1947, // The Open
                 357, // Gazoo Open
+                192, // ISPS Handa
             ],
             'Mathias' => [
                 1478, // WGC
@@ -82,6 +83,7 @@ class ChartController
                 368, // Scottish Open
                 3049, // The Open
                 120, // Gazoo Open
+                97, // ISPS Handa
             ],
             'Morten' => [
                 1094, // WGC
@@ -104,6 +106,7 @@ class ChartController
                 1375, // Scottish Open
                 1952, // The Open
                 429, // Gazoo Open
+                296, // ISPS Handa
             ],
             'Tomas' => [
                 1130, // WGC
@@ -126,6 +129,7 @@ class ChartController
                 500, // Scottish Open
                 1390, // The Open
                 76, // Gazoo Open
+                124, // ISPS Handa
             ],
         ];
     }
