@@ -61,6 +61,7 @@ class ChartController
                 1947, // The Open
                 357, // Gazoo Open
                 192, // ISPS Handa
+                143, // Hero Open
             ],
             'Mathias' => [
                 1478, // WGC
@@ -84,6 +85,7 @@ class ChartController
                 3049, // The Open
                 120, // Gazoo Open
                 97, // ISPS Handa
+                54, // Hero Open
             ],
             'Morten' => [
                 1094, // WGC
@@ -107,6 +109,7 @@ class ChartController
                 1952, // The Open
                 429, // Gazoo Open
                 296, // ISPS Handa
+                290, // Hero Open
             ],
             'Tomas' => [
                 1130, // WGC
@@ -130,6 +133,7 @@ class ChartController
                 1390, // The Open
                 76, // Gazoo Open
                 124, // ISPS Handa
+                72, // Hero Open
             ],
         ];
     }
