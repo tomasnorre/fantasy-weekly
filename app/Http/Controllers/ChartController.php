@@ -62,6 +62,10 @@ class ChartController
                 357, // Gazoo Open
                 192, // ISPS Handa
                 143, // Hero Open
+                457, // Gazoo Classic,
+                52, // D+D Real Czech Master
+                105, // Omega Master
+                0, // Italian Open
             ],
             'Mathias' => [
                 1478, // WGC
@@ -86,6 +90,10 @@ class ChartController
                 120, // Gazoo Open
                 97, // ISPS Handa
                 54, // Hero Open
+                219, // Gazoo Classic,
+                225, // D+D Real Czech Master
+                911, // Omega Master
+                0, // Italian Open
             ],
             'Morten' => [
                 1094, // WGC
@@ -110,6 +118,10 @@ class ChartController
                 429, // Gazoo Open
                 296, // ISPS Handa
                 290, // Hero Open
+                823, // Gazoo Classic,
+                185, // D+D Real Czech Master
+                684, // Omega Master
+                0, // Italian Open
             ],
             'Tomas' => [
                 1130, // WGC
@@ -134,6 +146,10 @@ class ChartController
                 76, // Gazoo Open
                 124, // ISPS Handa
                 72, // Hero Open
+                401, // Gazoo Classic,
+                216, // D+D Real Czech Master
+                1234, // Omega Master
+                0, // Italian Open
             ],
         ];
     }
